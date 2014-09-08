@@ -13,7 +13,11 @@ router.get('/', function(req, res) {
 
 /* GET login */
 router.get('/login', function(req, res) {
-  res.render('index', { title: 'Node Login Example w/ Passport' });
+    if (req.isAuthenticated()) {
+        res.redirect('/profile');
+    } else {
+        res.render('index', { title: 'Node Login Example w/ Passport' });
+    }
 });
 
 /* POST login */
