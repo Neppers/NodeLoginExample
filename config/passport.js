@@ -46,13 +46,15 @@ module.exports = function(passport) {
         passwordField: 'password',
         passReqToCallback: true
     }, function(req, email, password, done) {
-        
-        /*
-        1. Check if user with that email already exists
-        2. If any errors in database -> throw error
-        3. If password is not correct or use does not exist -> throw error
-        4. If no errors, log user in
-         */
-        
+        //1. Check if user with that email already exists
+        User.findOne({'local.email': email}, function(err, user) {
+            //2. If any errors in database -> throw error
+            if (err) return done(err);
+            //3. If password is not correct or use does not exist -> throw error
+            if (!user || !user.validPassword(password))
+                return done(null, false, { message: 'Invalid password or user does not exist' });
+            //4. If no errors, log user in
+            return done(null, user);
+        });
     }));
 };
