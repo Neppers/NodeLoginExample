@@ -17,15 +17,20 @@ module.exports = function(passport) {
         passwordField: 'password',
         passReqToCallback: true
     }, function(req, email, password, done) {
-        
-        /*
-        1. Check if a user with that email already exists
-        2. If any errors in database lookup -> throw error
-        3. If password/confirm password do not match -> throw error
-        4. If user already exists -> throw error
-        5. If no errors, create a new user
-         */
-        
+
+        //1. Check if a user with that email already exists
+        User.findOne({'local.email': email}, function(err, user) {
+            //2. If any errors in database lookup -> throw error    
+            if (err) return done(err);
+            //3. If password/confirm password do not match -> throw error
+            if (password !== req.body.confirmPassword)
+                return done(null, false, { message: 'Passwords do not match' });
+            if (user) {
+                //4. If user already exists -> throw error    
+            } else {
+                //5. If no errors, create a new user
+            }
+        });        
     }));
     
     passport.use('local-login', new LocalStrategy({
