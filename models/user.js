@@ -9,7 +9,8 @@ var userSchema = mongoose.Schema({
     created: {
         type: Date,
         default: Date.now
-    }
+    },
+    firstName: String
 });
 
 userSchema.methods.generateHash = function(password) {
