@@ -6,10 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
-/*
-INSTALL PASSPORT
- */
+var passport = require('passport');
 
 var config = {};
 
