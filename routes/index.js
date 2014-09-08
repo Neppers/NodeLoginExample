@@ -20,4 +20,9 @@ router.post('/login', passport.authenticate('local-login', {
     badRequestMessage: 'You must specify an email address and password'
 }));
 
+/* GET register */
+router.get('/register', function(req, res) {
+    res.render('register');
+});
+
 module.exports = router;
