@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    .page-header: h1=title
+    if messages && messages.error
+        .alert.alert-danger
+            each message in messages.error
+                p=message
+    form.form(action="/login", method="POST")
+        .form-group: input.form-control(type="email", placeholder="Email")
+        .form-group: input.form-control(type="password", placeholder="Password")
+        button.btn.btn-primary.btn-block(type="submit") Login

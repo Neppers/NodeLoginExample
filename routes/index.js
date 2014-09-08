@@ -1,9 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* Redirect home page to login */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+    res.redirect('/login');
+});
+
+/* GET home page. */
+router.get('/login', function(req, res) {
+  res.render('index', { title: 'Node Login Example w/ Passport' });
 });
 
 module.exports = router;
