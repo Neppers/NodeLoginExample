@@ -16,7 +16,7 @@ mongoose.connect(config.db.url);
 
 var routes = require('./routes/index');
 
-require('./config/password')(passport);
+require('./config/passport')(passport);
 
 var app = express();
 
