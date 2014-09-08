@@ -19,7 +19,11 @@ module.exports = function(passport) {
     }, function(req, email, password, done) {
         
         /*
-        Here is where we create a new user
+        1. Check if a user with that email already exists
+        2. If any errors in database lookup -> throw error
+        3. If password/confirm password do not match -> throw error
+        4. If user already exists -> throw error
+        5. If no errors, create a new user
          */
         
     }));
@@ -31,7 +35,10 @@ module.exports = function(passport) {
     }, function(req, email, password, done) {
         
         /*
-        Here is where we login our user in
+        1. Check if user with that email already exists
+        2. If any errors in database -> throw error
+        3. If password is not correct or use does not exist -> throw error
+        4. If no errors, log user in
          */
         
     }));
