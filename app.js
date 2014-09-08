@@ -7,6 +7,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+/*
+INSTALL PASSPORT
+ */
+
 var config = {};
 
 var mongoose = require('mongoose');
@@ -14,6 +18,10 @@ config.db = require('./config/database.js');
 mongoose.connect(config.db.url);
 
 var routes = require('./routes/index');
+
+/*
+CONNECT UP PASSPORT
+ */
 
 var app = express();
 
@@ -27,6 +35,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(session({secret: 'NotEvenAForgottenSoul'}));
+/*
+USE PASSPORT AS MIDDLEWARE
+ */
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
