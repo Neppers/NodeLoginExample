@@ -25,4 +25,12 @@ router.get('/register', function(req, res) {
     res.render('register');
 });
 
+/* POST register */
+router.post('/register', passport.authenticate('local-signup', {
+    successRedirect: '/',
+    failureRedirect: '/register',
+    failureFlash: true,
+    badRequestMessage: 'You must specify an email address and password'
+}));
+
 module.exports = router;
